@@ -9,7 +9,7 @@ router.register(r'clubs', views.ClubViewSet)
 
 urlpatterns = [
 	path('', include(router.urls)),
-	path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+	path('api-auth/', include('rest_framework.urls', namespace='rest_framework_clubs')),
 	# path('create/', views.ClubCreateView.as_view(), name='club_create'),
 	# path('search/', views.ClubSearchView.as_view(), name='club_search'),
 	# path('edit/<str:url>/', views.ClubEditView.as_view(), name='club_edit'),

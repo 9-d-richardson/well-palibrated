@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { fetchData } from '@/utils/api'
+// import { NextPageContext } from 'next'
 
 export const metadata: Metadata = {
   title: "Clubs",
@@ -23,3 +24,7 @@ export default async function Page() {
     </div>
   )
 }
+
+// Page.getInitialProps = async (ctx: NextPageContext) => {
+//   return { data: {title: 'test' }}
+// }

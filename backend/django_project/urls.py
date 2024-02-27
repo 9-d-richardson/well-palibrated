@@ -21,6 +21,7 @@ urlpatterns = [
     path('control/', admin.site.urls),
     path('events/', include('events.urls')),
     path('clubs/', include('clubs.urls')),
-    path('', include('accounts.urls')),
-    path('', include('management.urls')),
+    path('api/auth/', include('accounts.urls'))
+    # path('', include('accounts.urls')),
+    # path('', include('management.urls')),
 ]

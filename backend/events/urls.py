@@ -1,4 +1,4 @@
-from . import views 
+from . import views
 
 from django.urls import include, path
 from rest_framework import routers
@@ -9,7 +9,7 @@ router.register(r'online-event', views.OnlineEventViewSet)
 
 urlpatterns = [
 	path('', include(router.urls)),
-	path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+	path('api-auth/', include('rest_framework.urls', namespace='rest_framework_events')),
 	# path('new-online/', views.EventCreateOnlineView.as_view(), name='event_new_online'),
 	# path('new-irl/', views.EventCreateIRLView.as_view(), name='event_new_irl'),
 	# path('new/', views.EventCreateView.as_view(), name='event_new'),

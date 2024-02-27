@@ -18,6 +18,11 @@ export async function generateMetadata(
     }
 
 
+// Page.getInitialProps = async () => {
+//   return { title: 'test' }
+// }
+
+
 export default async function Page({params}: {params: {id: string} }) {
   const club_id = params.id;
   const club = await fetchData(`clubs/clubs/` + club_id + `.json`);
