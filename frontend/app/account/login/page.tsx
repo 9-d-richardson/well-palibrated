@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: pageName,
 };
 
-export default async function Page() {
+export default function Page() {
   return (
     <div>
       <h2 className={`text-2xl font-semibold`}>{pageName}</h2>

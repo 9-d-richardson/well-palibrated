@@ -1,4 +1,0 @@
-Dependencies:
-
-Pillow
-https://pypi.org/project/django-shortuuidfield/

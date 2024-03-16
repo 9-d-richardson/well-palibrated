@@ -171,6 +171,10 @@ REST_AUTH = {
     "JWT_AUTH_HTTPONLY": False,
 }
 
+CORS_ALLOW_CREDENTIALS = True
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:3000' # Here was the problem indeed and it has to be http://localhost:3000, not http://localhost:3000/
+]
 if DEBUG:
     CORS_ALLOW_ALL_ORIGINS = True
 else:
