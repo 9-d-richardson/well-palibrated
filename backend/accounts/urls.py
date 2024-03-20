@@ -3,6 +3,11 @@
 from . import views
 from django.urls import include, path
 from rest_framework import routers
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
+
 
 router = routers.DefaultRouter()
 router.register(r'users', views.CustomUserViewSet)
@@ -33,18 +38,21 @@ router.register(r'users', views.CustomUserViewSet)
 
 # urlpatterns += router.urls
 
-from dj_rest_auth.jwt_auth import get_refresh_view
+# from dj_rest_auth.jwt_auth import get_refresh_view
 from dj_rest_auth.registration.views import RegisterView
-from dj_rest_auth.views import LoginView, LogoutView, UserDetailsView
-from django.urls import path
-from rest_framework_simplejwt.views import TokenVerifyView
+from dj_rest_auth.views import LoginView, UserDetailsView
+# from django.urls import path
+# from rest_framework_simplejwt.views import TokenVerifyView
 
 urlpatterns = [
     path('', include(router.urls)),
     path("register/", RegisterView.as_view(), name="rest_register"),
-    path("login/", LoginView.as_view(), name="rest_login"),
-    path("logout/", LogoutView.as_view(), name="rest_logout"),
+    # path("login/", LoginView.as_view(), name="rest_login"),
+    path("login/", views.CustomTokenObtainPairView.as_view(), name="rest_login"),
+    path("logout/", views.LogoutView.as_view(), name="rest_logout"),
     path("user/", UserDetailsView.as_view(), name="rest_user_details"),
-    path("token/verify/", TokenVerifyView.as_view(), name="token_verify"),
-    path("token/refresh/", get_refresh_view().as_view(), name="token_refresh"),
+    path("token/verify/", views.CustomTokenVerifyView.as_view(), name="token_verify"),
+    # path("token/refresh/", get_refresh_view().as_view(), name="token_refresh"),
+    path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]

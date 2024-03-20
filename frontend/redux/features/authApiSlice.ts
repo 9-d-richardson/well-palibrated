@@ -16,10 +16,10 @@ const authApiSlice = apiSlice.injectEndpoints({
             query: () => '/users/me/'
         }),
         login: builder.mutation({
-            query: ({ email, password }) => ({
-                url:'/jwt/create/',
+            query: ({ username, password }) => ({
+                url:'/auth/login/',
                 method: 'POST',
-                body: { email, password }
+                body: { username, password }
             })
         }),
         register: builder.mutation({
@@ -31,23 +31,23 @@ const authApiSlice = apiSlice.injectEndpoints({
         }),
         verify: builder.mutation({
             query: () => ({
-                url:'/jwt/verify',
+                url:'/auth/token/verify/',
                 method: 'POST',
             })
         }),
         logout: builder.mutation({
             query: () => ({
-                url:'/logout/',
+                url:'/auth/logout/',
                 method: 'POST',
             })
         }),
-        activation: builder.mutation({
-            query: ({ uid, token }) => ({
-                url:'/users/activation/',
-                method: 'POST',
-                body: { uid, token }
-            })
-        }),
+        // activation: builder.mutation({
+        //     query: ({ uid, token }) => ({
+        //         url:'/users/activation/',
+        //         method: 'POST',
+        //         body: { uid, token }
+        //     })
+        // }),
         resetPassword: builder.mutation({
             query: (email) => ({
                 url:'/users/reset_password/',
@@ -71,7 +71,7 @@ export const {
     useRegisterMutation,
     useVerifyMutation,
     useLogoutMutation,
-    useActivationMutation,
+    // useActivationMutation,
     useResetPasswordMutation,
     useResetPasswordConfirmMutation,
  } = authApiSlice;
