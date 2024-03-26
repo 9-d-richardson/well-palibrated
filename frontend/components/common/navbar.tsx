@@ -1,7 +1,6 @@
 'use client';
 
-import Link from 'next/link';
-import { useRouter, usePathname } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { Disclosure } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { useAppSelector, useAppDispatch } from '@/redux/hooks';
@@ -27,7 +26,6 @@ export default function Navbar() {
   //   </nav>
   //   )
 
-  const router = useRouter();
   const pathname = usePathname();
   const dispatch = useAppDispatch();
   const [logout] = useLogoutMutation();
@@ -38,10 +36,7 @@ export default function Navbar() {
       .unwrap()
       .then(() => {
         dispatch(setLogout());
-      })
-      .finally(() => {
-        router.push('/')
-      })
+      });
   }
 
   const isSelected = (path: string) => pathname === path ? true: false;

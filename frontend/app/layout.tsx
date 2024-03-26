@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "@/styles/globals.css";
 import Link from 'next/link';
 const inter = Inter({ subsets: ["latin"] });
-import Navbar from '@/components/navbar'
+import {Navbar, Footer} from '@/components/common'
 import Provider from '@/redux/provider'
 import { Setup } from "@/components/utls";
 
@@ -30,6 +30,7 @@ export default function RootLayout({
           <div className="mx-auto max-w-7xl px-2 sn:px-6 lg:px-d my-8">
             {children}
           </div>
+          <Footer />
         </Provider>
       </body>
     </html>
