@@ -8,8 +8,8 @@ class CustomUserAdmin(UserAdmin):
 	form = CustomUserChangeForm
 	model = CustomUser
 	list_display = [
-		"email",
 		"username",
+		"email",
 		"user_description",
 		"is_staff",
 	]

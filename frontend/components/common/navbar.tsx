@@ -53,6 +53,13 @@ export default function Navbar() {
       <NavLink isMobile={isMobile} onClick={handleLogout}>
         Logout
       </NavLink>
+      <NavLink
+        isSelected={isSelected('clubs/')}
+        isMobile={isMobile}
+        href='clubs/'
+      >
+        Clubs
+      </NavLink>
     </>
   )
   const guestLinks = (isMobile: boolean) => (

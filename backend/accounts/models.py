@@ -37,7 +37,7 @@ class CustomUser(AbstractUser):
 		super(CustomUser, self).save(*args, **kwargs)
 
 	def __str__(self):
-		return self.user_url
+		return self.username
 
 	class Meta:
 		ordering = ['username',]

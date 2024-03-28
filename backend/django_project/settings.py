@@ -48,6 +48,7 @@ INSTALLED_APPS = [
 
     'sorl.thumbnail',
     'rest_framework',
+    'djoser',
     "rest_framework.authtoken",
     "rest_framework_simplejwt",
     "allauth",
