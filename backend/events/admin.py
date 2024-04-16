@@ -1,19 +1,16 @@
 from django.contrib import admin
 
-from .models import (IRLEvent, OnlineEvent)
+from .models import Event
+from .forms import EventForm
 
 class EventAdmin(admin.ModelAdmin):
 	list_display = ('event_name', 'permission_type')
-	fields = ['creator', 'event_name', 'event_description', 'permission_type', 
-		'start_time', 'end_time', 'link', 'repetition_type', 
-		'repetition_length']
+	fields = EventForm.fields
 
-class IRLEventAdmin(EventAdmin):
-	fields = EventAdmin.fields + ['location', 'location_link']
+# class IRLEventAdmin(EventAdmin):
+# 	fields = EventAdmin.fields + ['location', 'location_link']
 
-class OnlineEventAdmin(EventAdmin):
-	pass
+# class OnlineEventAdmin(EventAdmin):
+# 	pass
 
-admin.site.register(IRLEvent, IRLEventAdmin)
-admin.site.register(OnlineEvent, OnlineEventAdmin)
-
+admin.site.register(Event, EventAdmin)

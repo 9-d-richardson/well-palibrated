@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import {Button} from '@nextui-org/button';
+
 
 export const metadata: Metadata = {
 	title: 'Full Auth | Home',
@@ -35,6 +37,7 @@ export default function Page() {
 					</div>
 				</div>
 			</div>
+			<Button>Click me</Button>
     	</main>
 	);
 }

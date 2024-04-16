@@ -3,8 +3,8 @@ import { Inter } from "next/font/google";
 import "@/styles/globals.css";
 import Link from 'next/link';
 const inter = Inter({ subsets: ["latin"] });
-import {Navbar, Footer} from '@/components/common'
-import Provider from '@/redux/provider'
+import {Navbar, Footer} from '@/components/common';
+import {Providers} from "./providers";
 import { Setup } from "@/components/utls";
 
 export const metadata: Metadata = {
@@ -24,14 +24,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Provider>
+        <Providers>
           <Setup />
           < Navbar />
           <div className="mx-auto max-w-7xl px-2 sn:px-6 lg:px-d my-8">
             {children}
           </div>
           <Footer />
-        </Provider>
+        </Providers>
       </body>
     </html>
   );

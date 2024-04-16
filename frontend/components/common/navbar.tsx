@@ -43,25 +43,12 @@ export default function Navbar() {
 
   const authLinks = (isMobile: boolean) => (
     <>
-      <NavLink
-        isSelected={isSelected('/')}
-        isMobile={isMobile}
-        href='/'
-      >
-        Home
-      </NavLink>
       <NavLink isMobile={isMobile} onClick={handleLogout}>
         Logout
       </NavLink>
-      <NavLink
-        isSelected={isSelected('clubs/')}
-        isMobile={isMobile}
-        href='clubs/'
-      >
-        Clubs
-      </NavLink>
     </>
   )
+
   const guestLinks = (isMobile: boolean) => (
     <>
       <NavLink
@@ -78,6 +65,32 @@ export default function Navbar() {
       >
         Register
       </NavLink>
+    </>
+  )
+
+  const generalLinks = (isMobile: boolean) => (
+    <>
+      <NavLink
+        isSelected={isSelected('/')}
+        isMobile={isMobile}
+        href='/'
+      >
+        Home
+      </NavLink>
+      <NavLink
+          isSelected={isSelected('/clubs/')}
+          isMobile={isMobile}
+          href='/clubs/'
+        >
+          Clubs
+        </NavLink>
+        <NavLink
+          isSelected={isSelected('/events/')}
+          isMobile={isMobile}
+          href='/events/'
+        >
+          Events
+        </NavLink>
     </>
   )
 
@@ -108,6 +121,7 @@ export default function Navbar() {
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
+										{generalLinks(false)}
                     {isAuthenticated ? authLinks(false) : guestLinks(false)}
                   </div>
                 </div>
@@ -117,6 +131,7 @@ export default function Navbar() {
 
           <Disclosure.Panel className="sm:hidden">
             <div className="space-y-1 px-2 pb-3 pt-2">
+							{generalLinks(false)}
               {isAuthenticated ? authLinks(true) : guestLinks(true)}
             </div>
           </Disclosure.Panel>

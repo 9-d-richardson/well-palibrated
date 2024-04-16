@@ -5,7 +5,7 @@ from accounts.models import CustomUser
 from clubs.models import Club
 from django_project import shared_constants as s_c
 
-class EventBase(models.Model):
+class Event(models.Model):
 	NOT_REPEATED = 'NR'
 	DAILY = 'D'
 	WEEKLY = 'W'
@@ -75,12 +75,9 @@ class EventBase(models.Model):
 		null=True,
 		blank=True,
 	)
+	is_irl = models.BooleanField()
 
-	def __str__(self):
-		return self.event_name
-
-
-class IRLEvent(EventBase):
+	#These are only for IRL Events
 	location = models.TextField(
 		null=True,
 		blank=True,
@@ -91,7 +88,6 @@ class IRLEvent(EventBase):
 		blank=True,
 	)
 
-class OnlineEvent(EventBase):
 	''' This should be a link to like a webcast or something, as opposed to a
 	link which describes the event in greater detail '''
 	event_link  = models.URLField(
@@ -99,12 +95,35 @@ class OnlineEvent(EventBase):
 		blank=True,
 	)
 
-class Event(models.Model):
-	irl_event = models.OneToOneField(
-		IRLEvent,
-		on_delete=models.CASCADE,
-	)
-	online_event = models.OneToOneField(
-		OnlineEvent,
-		on_delete=models.CASCADE,
-	)
+	def __str__(self):
+		return self.event_name
+
+
+# class IRLEvent(EventBase):
+# 	location = models.TextField(
+# 		null=True,
+# 		blank=True,
+# 	)
+# 	#Should be to like Google Maps. Only if it's an IRL event
+# 	location_link = models.URLField(
+# 		null=True,
+# 		blank=True,
+# 	)
+
+# class OnlineEvent(EventBase):
+# 	''' This should be a link to like a webcast or something, as opposed to a
+# 	link which describes the event in greater detail '''
+# 	event_link  = models.URLField(
+# 		null=True,
+# 		blank=True,
+# 	)
+
+# class Event(models.Model):
+# 	irl_event = models.OneToOneField(
+# 		IRLEvent,
+# 		on_delete=models.CASCADE,
+# 	)
+# 	online_event = models.OneToOneField(
+# 		OnlineEvent,
+# 		on_delete=models.CASCADE,
+# 	)

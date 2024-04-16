@@ -46,7 +46,7 @@ from dj_rest_auth.views import LoginView, UserDetailsView
 
 urlpatterns = [
     path('', include(router.urls)),
-    # path("register/", RegisterView.as_view(), name="rest_register"),
+    path("register/", RegisterView.as_view(), name="rest_register"),
     path("login/", views.CustomTokenObtainPairView.as_view(), name="rest_login"),
     path("logout/", views.LogoutView.as_view(), name="rest_logout"),
     # path("user/", UserDetailsView.as_view(), name="rest_user_details"),

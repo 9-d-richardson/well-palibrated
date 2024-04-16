@@ -6,19 +6,18 @@ from django.urls import reverse_lazy
 from rest_framework import permissions, viewsets
 
 
-from .models import IRLEvent, OnlineEvent
-# from .forms import IRLEventForm, OnlineEventForm
-from .serializers import IRLEventSerializer, OnlineEventSerializer
+from .models import Event
+from .serializers import EventSerializer
 
-class IRLEventViewSet(viewsets.ModelViewSet):
-    queryset = IRLEvent.objects.all().order_by('event_name')
-    serializer_class = IRLEventSerializer
-    permission_classes = [permissions.IsAuthenticated]
+class EventViewSet(viewsets.ModelViewSet):
+    queryset = Event.objects.all().order_by('event_name')
+    serializer_class = EventSerializer
+    # permission_classes = [permissions.IsAuthenticated]
 
-class OnlineEventViewSet(viewsets.ModelViewSet):
-    queryset = OnlineEvent.objects.all().order_by('event_name')
-    serializer_class = OnlineEventSerializer
-    permission_classes = [permissions.IsAuthenticated]
+# class OnlineEventViewSet(viewsets.ModelViewSet):
+#     queryset = OnlineEvent.objects.all().order_by('event_name')
+#     serializer_class = OnlineEventSerializer
+#     permission_classes = [permissions.IsAuthenticated]
 
 # class EventCreateView(TemplateView):
 # 	'''

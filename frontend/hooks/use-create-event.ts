@@ -1,20 +1,21 @@
-import { useLoginMutation } from "@/redux/features/authApiSlice";
+import { useCreateEventMutation } from "@/redux/features/authApiSlice";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { useState, ChangeEvent, FormEvent } from "react"
 import { setAuth } from "@/redux/features/authSlice";
 import { useAppDispatch } from "@/redux/hooks";
 
-export default function useLogin() {
+export default function useCreateEvent() {
     const router = useRouter();
     const dispatch = useAppDispatch();
-    const [login, {isLoading}] = useLoginMutation();
+    const [createEvent, {isLoading}] = useCreateEventMutation();
     const [ formData, setFormData ] = useState({
-        username: '',
-        password: '',
+        event_name: '',
+        event_description: '',
+        members: [],
+        admins: [],
     });
-
-    const { username, password } = formData;
+    const { event_name, event_description,  } = formData;
 
     const onChange = (event: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
@@ -24,23 +25,23 @@ export default function useLogin() {
     const onSubmit = (event: FormEvent<HTMLFormElement>) => {
       event.preventDefault();
 
-      login({username, password})
+      createEvent({event_name, event_description})
         .unwrap()
         .then(() => {
           dispatch(setAuth());
-          toast.success('Logged in');
+          toast.success('Club created!');
           router.push('/');
         })
         .catch(() => {
-          toast.error('Failed to log in');
+          toast.error('Failed to create club');
         })
     }
 
     return {
-        username,
-        password,
-        isLoading,
-        onChange,
-        onSubmit,
+      event_name,
+      event_description,
+      isLoading,
+      onChange,
+      onSubmit,
     };
 }

@@ -4,11 +4,10 @@ from django.urls import include, path
 from rest_framework import routers
 
 router = routers.DefaultRouter()
-router.register(r'irl-event', views.IRLEventViewSet)
-router.register(r'online-event', views.OnlineEventViewSet)
+router.register(r'events', views.EventViewSet)
 
 urlpatterns = [
-	path('', include(router.urls)),
+	# path('', include(router.urls)),
 	path('api-auth/', include('rest_framework.urls', namespace='rest_framework_events')),
 	# path('new-online/', views.EventCreateOnlineView.as_view(), name='event_new_online'),
 	# path('new-irl/', views.EventCreateIRLView.as_view(), name='event_new_irl'),

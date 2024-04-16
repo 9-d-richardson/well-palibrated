@@ -16,9 +16,9 @@ from django_project import shared_constants as s_c
 # 	}
 
 class Club(models.Model):
-	INVITE_ONLY = 'IO'
-	REQUEST_TO_JOIN = 'RTJ'
-	PUBLIC = 'P'
+	INVITE_ONLY = 'invite_only'
+	REQUEST_TO_JOIN = 'request_to_join'
+	PUBLIC = 'public'
 	PERMISSION_TYPES = {
 		INVITE_ONLY: 'Invite only',
 		REQUEST_TO_JOIN: 'Request to join',
@@ -26,12 +26,13 @@ class Club(models.Model):
 	}
 
 	admins = models.ManyToManyField(
-		CustomUser, 
+		CustomUser,
 		related_name='admins',
 	)
 	members = models.ManyToManyField(
-		CustomUser, 
+		CustomUser,
 		related_name='members',
+    blank=True,
 	)
 	club_name = models.CharField(
 		max_length=s_c.CharFieldMaxLength,

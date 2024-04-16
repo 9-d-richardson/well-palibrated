@@ -12,8 +12,15 @@ interface CreateUserResponse {
 
 interface Club {
     club_name: string;
-    admins: [];
+    permission_type: string;
     club_description: string;
+    members: [];
+    admins: [];
+}
+
+interface Event {
+    event_name: string;
+    event_description: string;
 }
 
 const authApiSlice = apiSlice.injectEndpoints({
@@ -69,24 +76,32 @@ const authApiSlice = apiSlice.injectEndpoints({
             })
         }),
 
-        getEventsList: builder.mutation({
-            query: () => ({
-                url:'/users/reset_password_confirm/',
-                method: 'POST',
-                body: {}
-            })
-        }),
         getClub: builder.query<Club, string>({
-            query: (id) => `/auth/clubs/clubs/${id}`
+            query: (id) => `/auth/clubs/${id}`
         }),
         getClubList: builder.query<any, void>({
-            query: () => `/auth/clubs/clubs/`
+            query: () => `/auth/clubs/`
         }),
-        getEvent:  builder.query<Club, string>({
-            query: (id) => `/auth/events/events/${id}`
+        createClub: builder.mutation({
+            query: ({ club_name, permission_type, club_description, members, admins }) => ({
+                url:'/auth/clubs/',
+                method: 'POST',
+                body: {  club_name, permission_type, club_description, members, admins  }
+            })
+        }),
+
+        getEvent:  builder.query<Event, string>({
+            query: (id) => `/auth/events/${id}`
         }),
         getEventList: builder.query<any, void>({
-            query: () => `/auth/events/events/`
+            query: () => `/auth/events/`
+        }),
+        createEvent: builder.mutation({
+            query: ({ event_name }) => ({
+                url:'/auth/events/',
+                method: 'POST',
+                body: {  event_name  }
+            })
         }),
     })
 })
@@ -100,9 +115,12 @@ export const {
     // useActivationMutation,
     useResetPasswordMutation,
     useResetPasswordConfirmMutation,
-    useGetEventsListMutation,
+
     useGetClubQuery,
     useGetClubListQuery,
+    useCreateClubMutation,
+
     useGetEventQuery,
     useGetEventListQuery,
+    useCreateEventMutation
  } = authApiSlice;

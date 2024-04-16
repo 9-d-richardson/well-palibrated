@@ -20,8 +20,8 @@ from django.urls import path, include, re_path
 urlpatterns = [
     path('control/', admin.site.urls),
     re_path(r'^auth/', include('djoser.urls')),
-    path('api/auth/events/', include('events.urls')),
-    path('api/auth/clubs/', include('clubs.urls')),
+    path('api/auth/', include('events.urls')),
+    path('api/auth/', include('clubs.urls')),
     path('api/auth/accounts/', include('accounts.urls')),
 
     # path('', include('accounts.urls')),
