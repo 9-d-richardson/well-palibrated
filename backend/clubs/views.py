@@ -33,4 +33,10 @@ class ClubViewSet(viewsets.ModelViewSet):
     """
     queryset = Club.objects.all().order_by('club_name')
     serializer_class = ClubSerializer
-    # permission_classes = [permissions.IsAuthenticated]
+    # Being logged in currently doesn't = isAuthenticated, so this is commented out temporarily to test other things
+    # Also need to customize permissions - viewing allowed when logged out but not creating/editing
+    permission_classes = [permissions.IsAuthenticated]
+
+    # def create(self, validated_data):
+    #   admins = [self.request.user]
+    #   return models.YourModel.objects.create(email=email, **validated_data)

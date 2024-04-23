@@ -28,6 +28,7 @@ class Club(models.Model):
 	admins = models.ManyToManyField(
 		CustomUser,
 		related_name='admins',
+		blank=True,
 	)
 	members = models.ManyToManyField(
 		CustomUser,
@@ -49,3 +50,9 @@ class Club(models.Model):
 
 	def __str__(self):
 		return self.club_name
+
+  #This method sets the default admin to whoever the user currently is, for new clubs
+	def save(self, *args, **kwargs):
+		if self.id is None:
+			print('x')
+		super(Club, self).save(*args, **kwargs)
